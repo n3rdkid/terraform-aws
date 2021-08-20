@@ -6,6 +6,8 @@ variable "availability_zone" {
 }
 variable "my_ip" {
 }
+variable "instance_type" {
+}
 
 variable "env_prefix" {
   type = string
