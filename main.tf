@@ -47,3 +47,33 @@ resource "aws_default_route_table" "main-rtb" {
     Name = "${var.env_prefix}-rtb"
   }
 }
+
+resource "aws_security_group" "custom-sg" {
+name = "test-sg"
+vpc_id = aws_vpc.custom_vpc.id
+
+ingress {
+  cidr_blocks = [ var.my_ip]
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+} 
+ingress {
+  cidr_blocks = [ "0.0.0.0/0"]
+  from_port = 8080
+  protocol = "tcp"
+  to_port = 8080
+} 
+
+egress {
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+  prefix_list_ids = []
+}
+tags = {
+  Name = "${var.env_prefix}-main-sg"
+}
+
+}

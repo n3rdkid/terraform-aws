@@ -9,3 +9,7 @@
 
 # Terraform State files
 *.tfstate.*
+*.tfstate
+
+.terraformrc
+terraform.rc
