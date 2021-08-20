@@ -14,5 +14,20 @@ resource "aws_subnet" "custom_subnet_1" {
         Name: "${var.env_prefix}-subnet_1"
     }
 }
-
-
+resource "aws_internet_gateway" "custom-internet-gateway" {
+   vpc_id = aws_vpc.custom_vpc.id
+    tags = {
+      Name = "${var.env_prefix}-igw"
+    }
+}
+resource "aws_route_table" "custom-route-table" {
+    vpc_id = aws_vpc.custom_vpc.id
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.custom-internet-gateway.id
+    }
+    tags = {
+      Name = "${var.env_prefix}-rtb"
+    }
+  
+}
