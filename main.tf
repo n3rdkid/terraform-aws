@@ -31,3 +31,9 @@ resource "aws_route_table" "custom-route-table" {
     }
   
 }
+
+resource "aws_route_table_association" "a-rtb-subnet" {
+    subnet_id = aws_subnet.custom_subnet_1.id
+    route_table_id = aws_route_table.custom-route-table.id
+  
+}
