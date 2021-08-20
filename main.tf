@@ -48,8 +48,7 @@ resource "aws_default_route_table" "main-rtb" {
   }
 }
 
-resource "aws_security_group" "custom-sg" {
-name = "test-sg"
+resource "aws_default_security_group" "default-sg" {
 vpc_id = aws_vpc.custom_vpc.id
 
 ingress {
